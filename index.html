@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 Tracker</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+     crossorigin="anonymous">
+     <link rel="stylesheet" href="./CSS/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Covid-19 Cases</h5>
+          <p id="card-text"></p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li id="total-cases"></li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+        <div class="card-body">
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
+        </div>
+      </div>
+    </div>
+<!-- 
+    <h1> This is a API for Covid-19 </h1>
+    <br>
+    <p id="apiIndia"> This is </p> -->
+    
+    <script>
+        fetch('https://api.covid19api.com/summary').then( (apidata)=>{
+            // console.log(apidata);
+            return apidata.json();
+        }).then((actualdata) =>{
+             console.log(actualdata)
+        const myData =  actualdata.Countries[76].Country;
+        const cases =  myData.TotalConfirmed;
+
+           document.getElementById('card-text').innerHTML = `Country: ${myData}` ;
+           document.getElementById('total-cases').innerHTML = `Total Confirmed Cases: ${cases}`;
+
+        }).catch( (error) => { console.log(error)});
+    </script>
+</body>
+</html>
